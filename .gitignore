@@ -68,8 +68,6 @@ artifacts/
 *.pidb
 *.svclog
 *.scc
-*.vsidx
-*.suo
 
 # Chutzpah Test files
 _Chutzpah*
@@ -174,6 +172,10 @@ BundleArtifacts/
 *.[Cc]ache
 # but keep track of directories ending in .cache
 !*.[Cc]ache/
+
+# Ignore .vsidx files
+*.vsidx
+*.suo
 
 # Others
 ClientBin/
