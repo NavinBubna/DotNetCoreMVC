@@ -42,6 +42,7 @@ dlldata.c
 
 # DNX
 project.lock.json
+project.assests.json
 artifacts/
 
 *_i.c
@@ -68,6 +69,9 @@ artifacts/
 *.pidb
 *.svclog
 *.scc
+*.lock
+*.dgspec.json
+*.props
 
 # Chutzpah Test files
 _Chutzpah*
