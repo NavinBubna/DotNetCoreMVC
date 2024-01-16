@@ -180,6 +180,7 @@ BundleArtifacts/
 # Ignore .vsidx files
 *.vsidx
 *.suo
+*.targets
 
 # Others
 ClientBin/
