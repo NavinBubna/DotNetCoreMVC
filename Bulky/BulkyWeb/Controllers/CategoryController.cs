@@ -42,5 +42,23 @@ namespace BulkyWeb.Controllers
             }
             return View();
         }
+
+        public IActionResult Edit(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            // Different approaches to retrieve data from db, but the most prefered one is FirstOrDefault()
+            CategoryModel? categoryFromDb = _db.Categories.Find(id);
+            CategoryModel? categoryFromDb1 = _db.Categories.FirstOrDefault(u => u.Id == id);
+            CategoryModel? categoryFromDb2 = _db.Categories.Where(u => u.Id == id).FirstOrDefault();
+
+            if (categoryFromDb == null)
+            {
+                return NotFound();
+            }
+            return View(categoryFromDb);
+        }
     }
 }
