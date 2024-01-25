@@ -60,5 +60,17 @@ namespace BulkyWeb.Controllers
             }
             return View(categoryFromDb);
         }
+
+        [HttpPost]
+        public IActionResult Edit(CategoryModel obj)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.Categories.Update(obj);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
     }
 }
