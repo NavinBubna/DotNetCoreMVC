@@ -1,6 +1,8 @@
 ﻿@model CategoryModel
 
 <form method="post">
+    @*Will be used if Id will not be populated at Edit action on controller to prevent it from creating new entry by passing Id as 0*@
+    @* <input asp-for="Id" hidden /> *@
     <div class="border p-3 mt-4">
         <div class="row pb-2">
             <h2 class="text-primary">Edit Category</h2>
