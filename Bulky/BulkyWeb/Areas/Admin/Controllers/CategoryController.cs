@@ -4,7 +4,7 @@ using BulkyBooks.DataAccess.Repository.IRepository;
 using BulkyBooks.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BulkyBooksWeb.Controllers
+namespace BulkyBookWeb.Areas.Admin.Controllers
 {
     public class CategoryController : Controller
     {
