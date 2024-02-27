@@ -40,6 +40,7 @@ namespace BulkyBook.Models
         [ValidateNever]
         public CategoryModel Category { get; set; }
 
+        [ValidateNever]
         public string ImageUrl { get; set; }
     }
 }
