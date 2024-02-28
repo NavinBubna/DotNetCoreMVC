@@ -11,7 +11,7 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
         private readonly IUnitOfWork _unitOfWork;
         private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public ProductController(IUnitOfWork unitOfWork, 
+        public ProductController(IUnitOfWork unitOfWork,
                                  IWebHostEnvironment webHostEnvironment)
         {
             _unitOfWork = unitOfWork;
@@ -64,11 +64,22 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                string wwwRootPath = _webHostEnvironment.WebRootPath;
                 if (file != null)
                 {
-                    string wwwRootPath = _webHostEnvironment.WebRootPath;
                     string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
                     string productPath = Path.Combine(wwwRootPath, "images", "product");    // string productPath = Path.Join(wwwRootPath, @"\images\product\"); -> this is a new version .net 2.1
+
+                    if (!string.IsNullOrEmpty(productVM.Product.ImageUrl))
+                    {
+                        // delete the old image
+                        var oldImagePath = Path.Combine(wwwRootPath, productVM.Product.ImageUrl.TrimStart('\\'));
+
+                        if (System.IO.File.Exists(oldImagePath))
+                        {
+                            System.IO.File.Delete(oldImagePath);
+                        }
+                    }
 
                     using (var fileStream = new FileStream(Path.Combine(productPath, fileName), FileMode.Create))
                     {
@@ -77,7 +88,15 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
 
                     productVM.Product.ImageUrl = @"\images\product\" + fileName;
                 }
-                _unitOfWork.Product.Add(productVM.Product);
+
+                if (productVM.Product.Id == 0)
+                {
+                    _unitOfWork.Product.Add(productVM.Product);
+                }
+                else
+                {
+                    _unitOfWork.Product.update(productVM.Product);
+                }
                 _unitOfWork.Save();
                 TempData["success"] = "Product Created Successfully";
                 return RedirectToAction("Index");
