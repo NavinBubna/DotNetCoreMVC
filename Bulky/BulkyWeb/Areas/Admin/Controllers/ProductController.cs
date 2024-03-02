@@ -20,7 +20,7 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
-            List<ProductModel> objProductList = _unitOfWork.Product.GetAll(includeProperties: "Category").ToList();
+            IEnumerable<ProductModel> objProductList = _unitOfWork.Product.GetAll(includeProperties: "Category").ToList();
             return View(objProductList);
         }
 
@@ -143,5 +143,15 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
             }
             return NotFound();
         }
+
+        #region API CALLS
+
+        public IActionResult GetAll()
+        {
+            IEnumerable<ProductModel> objProductList = _unitOfWork.Product.GetAll(includeProperties: "Category").ToList();
+            return Json(new { data = objProductList });
+        }
+
+        #endregion
     }
 }
