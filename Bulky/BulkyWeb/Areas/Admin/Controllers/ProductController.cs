@@ -145,7 +145,7 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
         //}
 
         #region API CALLS
-
+        [HttpDelete]
         public IActionResult Delete(int? id)
         {
             if (id != null && id > 0)
