@@ -1,9 +1,10 @@
 ﻿using BulkyBook.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace BulkyBook.DataAccess.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
@@ -15,6 +16,7 @@ namespace BulkyBook.DataAccess.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<CategoryModel>().HasData(
                 new CategoryModel { Id = 1, Name = "Action", DisplayOrder = 1 },
                 new CategoryModel { Id = 2, Name = "SciFi", DisplayOrder = 2 },
