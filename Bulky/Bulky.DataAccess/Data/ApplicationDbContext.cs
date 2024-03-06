@@ -14,6 +14,7 @@ namespace BulkyBook.DataAccess.Data
 
         public DbSet<CategoryModel> Categories { get; set; }
         public DbSet<ProductModel> Products { get; set; }
+        public DbSet<ApplicationUsers> ApplicationUsers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
