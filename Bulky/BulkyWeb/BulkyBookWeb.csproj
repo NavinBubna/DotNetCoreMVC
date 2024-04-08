@@ -26,7 +26,6 @@
     <ProjectReference Include="..\Bulky.Utility\BulkyBook.Utility.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controllers\" />
     <Folder Include="wwwroot\images\product\" />
   </ItemGroup>
 </Project>
