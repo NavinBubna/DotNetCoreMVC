@@ -198,9 +198,9 @@ namespace BulkyBookWeb.Areas.Customer.Controllers
 		public IActionResult OrderConfirmation(int id)
 		{
 			OrderHeader orderHeader = _unitOfWork.OrderHeader.Get(u => u.Id == id, includeProperties: "ApplicationUser");
-            if (orderHeader.PaymentStatus != SD.PaymentStatusDelayedPayment)
-            {
-                // this is an order by customer
+			if (orderHeader.PaymentStatus != SD.PaymentStatusDelayedPayment)
+			{
+				// this is an order by customer
 				var service = new SessionService();
 				Session session = service.Get(orderHeader.SessionId);
 
@@ -210,12 +210,12 @@ namespace BulkyBookWeb.Areas.Customer.Controllers
 					_unitOfWork.OrderHeader.UpdateStatus(id, SD.StatusApproved, SD.PaymentStatusApproved);
 					_unitOfWork.Save();
 				}
-            }
+			}
 			List<ShoppingCart> shoppingCarts = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == orderHeader.ApplicationUserId).ToList();
 			_unitOfWork.ShoppingCart.RemoveRange(shoppingCarts);
 			_unitOfWork.Save();
 
-            return View(id);
+			return View(id);
 		}
 
 		private double GetPriceBasedOnQuantity(ShoppingCart shoppingCart)
