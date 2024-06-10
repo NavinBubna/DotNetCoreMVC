@@ -29,4 +29,10 @@
   <ItemGroup>
     <Folder Include="wwwroot\images\product\" />
   </ItemGroup>
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Areas\Admin\Views\Order\PaymentConfirmation.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Areas\Admin\Views\Order\PaymentConfirmation.cshtml" />
+  </ItemGroup>
 </Project>
